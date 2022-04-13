@@ -1,29 +1,35 @@
-import React from 'react'
+import React from "react";
 
 export default class Form extends React.Component {
-  addItem =(e) => {
-    e.preventDefault()
-    this.props.onSubmit()
-  }
+  addItem = (e) => {
+    e.preventDefault();
+    this.props.onSubmit();
+  };
 
-  inputHandler =(e) => {
-    this.props.inputChange(e)
+  inputHandler = (e) => {
+    this.props.inputChange(e);
+  };
+
+  removeCompleted =() => {
+    this.props.hideCompleted()
   }
   render() {
     return (
-      <form onSubmit= {this.addItem}>
-        <input 
-        type= "text"
-        placeholder= "enter new todo"
-        name= "todo"
-        value= {this.props.textInput}
-        onChange = {this.inputHandler}
-        />
+      <div>
+        <form onSubmit={this.addItem}>
+          <input
+            type="text"
+            placeholder="enter new todo"
+            name="todo"
+            value={this.props.textInput}
+            onChange={this.inputHandler}
+          />
           <button>Submit New Todo</button>
-        <div>
-          <button>Hide Completed Todos</button>
-        </div>
-      </form>
-    )
+        </form>
+        <button onClick={this.removeCompleted}>
+          {this.props.displayCompleteds ? 'Hide' : 'Show'} Completed Todos
+        </button>
+      </div>
+    );
   }
 }
